@@ -1,4 +1,5 @@
 # Build files
 public/
 .hugo_build.lock
+resources/
 
