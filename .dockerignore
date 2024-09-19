@@ -3,3 +3,4 @@
 .git
 public
 resources/_gen
+build_deploy.sh
