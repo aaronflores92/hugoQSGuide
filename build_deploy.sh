@@ -43,13 +43,19 @@ case "$response" in
 		;;
 esac
 
+# Pull the latest files from the Git remote repo
+git pull
 if sudo docker build -t hugo-release .; then
-	# Create target directory if not exists
+        # Create target directory if not exists
 	mkdir -p $target_dir
+        # Create a backup of the current site pages
+	pushd $target_dir
+	tar -czvf /var/www/html/redflowers.io/backups/site.$(date +%Y%m%d-%H%M%S).tar.gz .
+	popd
 	# Clear target directory
-	rm -r $target_dir/*
+	sudo rm -fr $target_dir/*
 	# Copy build to target directory
-	sudo docker run --rm hugo-release tar -cf - public | tar -xvf - -C $target_dir --strip-components=1
+	sudo docker run --rm hugo-release tar -cf - public | sudo tar -xvf - -C $target_dir --strip-components=1
 else
 	echo "Docker build failed, aborting..."
 	exit 1
