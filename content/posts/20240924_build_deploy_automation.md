@@ -1,5 +1,5 @@
 +++
-title = '20240924_build_deploy_automation'
+title = 'Standardizing and Automating my Build and Deployment'
 date = 2024-09-24T14:33:52-07:00
 draft = false
 +++
